@@ -4,7 +4,12 @@ const connectDb = require("./config/dbConnection")
 const cors = require("cors");
 connectDb();
 const app=express();
-app.use(cors("*"));
+app.use(cors({
+    origin: "*", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use("/api/users", require("./Routes/UserRoutes"))
